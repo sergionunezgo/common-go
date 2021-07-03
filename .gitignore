@@ -13,3 +13,13 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+# Other directories or files
+build/
+.env
+.env.list
+
+### Code ###
+.vscode/
+.vscode/*
+*.code-workspace
