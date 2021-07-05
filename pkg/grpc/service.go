@@ -1,4 +1,4 @@
-package grpc_srv
+package grpc
 
 import (
 	"github.com/sergionunezgo/go-reuse/pkg/logger"
@@ -7,7 +7,7 @@ import (
 	"google.golang.org/grpc/keepalive"
 )
 
-func NewService() (*grpc.Server, error) {
+func NewGRPCService() (*grpc.Server, error) {
 	gServer := grpc.NewServer(
 		grpc.KeepaliveEnforcementPolicy(keepalive.EnforcementPolicy{PermitWithoutStream: true}),
 		grpc.KeepaliveParams(keepalive.ServerParameters{}),
