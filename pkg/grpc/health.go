@@ -1,4 +1,4 @@
-package grpc_srv
+package grpc
 
 import (
 	"context"

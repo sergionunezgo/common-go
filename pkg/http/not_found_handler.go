@@ -1,4 +1,4 @@
-package http_srv
+package http
 
 import (
 	"net/http"

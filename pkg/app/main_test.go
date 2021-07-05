@@ -5,11 +5,11 @@ import (
 	"testing"
 
 	"github.com/sergionunezgo/go-reuse/pkg/app"
-	"github.com/sergionunezgo/go-reuse/pkg/http_srv"
+	"github.com/sergionunezgo/go-reuse/pkg/http"
 )
 
 func initService(cfg *app.Config) (app.Service, error) {
-	httpSrv := http_srv.NewService(cfg.Port)
+	httpSrv := http.NewHttpService(cfg.Port)
 	return httpSrv, nil
 }
 
