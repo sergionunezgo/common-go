@@ -7,21 +7,32 @@ import (
 
 	"github.com/pkg/errors"
 	"github.com/sergionunezgo/go-reuse/pkg/logger"
-	"github.com/sergionunezgo/go-reuse/pkg/service"
 	"github.com/urfave/cli"
 )
 
 var (
 	// Reference to the api service, it has to implement io.Closer interface for clean-up.
-	serviceRef service.Service
+	serviceRef Service
 	interrupt  chan os.Signal
 )
 
+// Config defines the values that can be loaded from env vars or other config files.
+type Config struct {
+	Port     int
+	LogLevel string
+}
+
+// Service defines the methods that are required to operate a web service.
+type Service interface {
+	Start() error
+	Close() error
+}
+
 // Create loads env variables, calls the initService method for setup and starts the service.
-func Create(flags []cli.Flag, initService func(cfg *service.Config) (service.Service, error)) *cli.App {
+func Create(flags []cli.Flag, initService func(cfg *Config) (Service, error)) *cli.App {
 	setupInterruptCloseHandler()
 
-	config := &service.Config{}
+	config := &Config{}
 	baseFlags := []cli.Flag{
 		cli.IntFlag{
 			Name:        "api_port",
