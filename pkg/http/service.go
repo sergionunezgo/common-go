@@ -1,4 +1,4 @@
-package http
+package http_srv
 
 import (
 	"fmt"
@@ -46,9 +46,9 @@ func (h *HttpService) AddRoutes(handlers ...Handler) {
 	}
 }
 
-// NewService will run the setup process and create a Service that can be
+// NewHttpService will run the setup process and create a Service that can be
 // used to run a http api.
-func NewService(port int) *HttpService {
+func NewHttpService(port int) *HttpService {
 	r := mux.NewRouter().StrictSlash(true)
 
 	NewNotFoundHandler().AddRoute(r)

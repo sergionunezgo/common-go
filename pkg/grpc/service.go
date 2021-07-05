@@ -1,4 +1,4 @@
-package grpc
+package grpc_srv
 
 import (
 	"github.com/sergionunezgo/go-reuse/pkg/logger"
