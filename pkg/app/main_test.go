@@ -15,5 +15,6 @@ func initService(cfg *app.Config) (app.Service, error) {
 
 func TestRunApp(t *testing.T) {
 	_ = app.Create(nil, initService)
+
 	log.Print("app created")
 }
