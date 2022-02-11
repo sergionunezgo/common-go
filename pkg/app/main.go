@@ -83,6 +83,7 @@ func setupInterruptCloseHandler() {
 	interruptions := make(chan os.Signal, 2)
 	interrupt = interruptions
 	signal.Notify(interruptions, os.Interrupt, syscall.SIGTERM)
+
 	go func() {
 		<-interruptions
 		logger.Log.Warn("interruption signal received, starting clean-up")
