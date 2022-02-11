@@ -15,6 +15,7 @@ type NotFoundHandler struct {
 func (h *NotFoundHandler) Handle(w http.ResponseWriter, r *http.Request) {
 	logger.Log.Info("invalid route")
 	w.WriteHeader(http.StatusNotFound)
+
 	_, err := w.Write([]byte("route not found"))
 	if err != nil {
 		logger.Log.Errorf("failed to write response: %+v\n", err)
