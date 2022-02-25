@@ -22,7 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TestServiceClient interface {
-	GetTestMessage(ctx context.Context, in *GetTestMessageRequest, opts ...grpc.CallOption) (*GetTestMessageResponse, error)
+	GetMessage(ctx context.Context, in *GetMessageRequest, opts ...grpc.CallOption) (*GetMessageResponse, error)
 }
 
 type testServiceClient struct {
@@ -33,9 +33,9 @@ func NewTestServiceClient(cc grpc.ClientConnInterface) TestServiceClient {
 	return &testServiceClient{cc}
 }
 
-func (c *testServiceClient) GetTestMessage(ctx context.Context, in *GetTestMessageRequest, opts ...grpc.CallOption) (*GetTestMessageResponse, error) {
-	out := new(GetTestMessageResponse)
-	err := c.cc.Invoke(ctx, "/goreuse.test.TestService/GetTestMessage", in, out, opts...)
+func (c *testServiceClient) GetMessage(ctx context.Context, in *GetMessageRequest, opts ...grpc.CallOption) (*GetMessageResponse, error) {
+	out := new(GetMessageResponse)
+	err := c.cc.Invoke(ctx, "/goreuse.test.TestService/GetMessage", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -46,7 +46,7 @@ func (c *testServiceClient) GetTestMessage(ctx context.Context, in *GetTestMessa
 // All implementations must embed UnimplementedTestServiceServer
 // for forward compatibility
 type TestServiceServer interface {
-	GetTestMessage(context.Context, *GetTestMessageRequest) (*GetTestMessageResponse, error)
+	GetMessage(context.Context, *GetMessageRequest) (*GetMessageResponse, error)
 	mustEmbedUnimplementedTestServiceServer()
 }
 
@@ -54,8 +54,8 @@ type TestServiceServer interface {
 type UnimplementedTestServiceServer struct {
 }
 
-func (UnimplementedTestServiceServer) GetTestMessage(context.Context, *GetTestMessageRequest) (*GetTestMessageResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetTestMessage not implemented")
+func (UnimplementedTestServiceServer) GetMessage(context.Context, *GetMessageRequest) (*GetMessageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMessage not implemented")
 }
 func (UnimplementedTestServiceServer) mustEmbedUnimplementedTestServiceServer() {}
 
@@ -70,20 +70,20 @@ func RegisterTestServiceServer(s grpc.ServiceRegistrar, srv TestServiceServer) {
 	s.RegisterService(&TestService_ServiceDesc, srv)
 }
 
-func _TestService_GetTestMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetTestMessageRequest)
+func _TestService_GetMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMessageRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TestServiceServer).GetTestMessage(ctx, in)
+		return srv.(TestServiceServer).GetMessage(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/goreuse.test.TestService/GetTestMessage",
+		FullMethod: "/goreuse.test.TestService/GetMessage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TestServiceServer).GetTestMessage(ctx, req.(*GetTestMessageRequest))
+		return srv.(TestServiceServer).GetMessage(ctx, req.(*GetMessageRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -96,8 +96,8 @@ var TestService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*TestServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetTestMessage",
-			Handler:    _TestService_GetTestMessage_Handler,
+			MethodName: "GetMessage",
+			Handler:    _TestService_GetMessage_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
