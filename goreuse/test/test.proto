@@ -1,0 +1,26 @@
+syntax = "proto3";
+package goreuse.test;
+
+option go_package = "github.com/sergionunezgo/go-reuse/pkg/proto/test";
+
+import "google/protobuf/timestamp.proto";
+
+service TestService {
+    rpc GetTestMessage (GetTestMessageRequest) returns (GetTestMessageResponse);
+}
+
+// TestMessage
+
+message GetTestMessageRequest {
+    int32 id = 1;
+}
+
+message GetTestMessageResponse {
+    TestMessage test_message = 1;
+}
+
+message TestMessage {
+    int32 id = 1;
+    string message = 2;
+    google.protobuf.Timestamp time = 3;
+}
