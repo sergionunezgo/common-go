@@ -1,4 +1,4 @@
-module github.com/sergionunezgo/go-reuse
+module github.com/sergionunezgo/go-reuse/v2
 
 go 1.16
 

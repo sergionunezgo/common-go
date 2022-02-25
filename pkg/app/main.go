@@ -6,7 +6,7 @@ import (
 	"syscall"
 
 	"github.com/pkg/errors"
-	"github.com/sergionunezgo/go-reuse/pkg/logger"
+	"github.com/sergionunezgo/go-reuse/v2/pkg/logger"
 	"github.com/urfave/cli"
 )
 

@@ -4,8 +4,8 @@ import (
 	"log"
 	"testing"
 
-	"github.com/sergionunezgo/go-reuse/pkg/app"
-	"github.com/sergionunezgo/go-reuse/pkg/http"
+	"github.com/sergionunezgo/go-reuse/v2/pkg/app"
+	"github.com/sergionunezgo/go-reuse/v2/pkg/http"
 )
 
 func initService(cfg *app.Config) (app.Service, error) {
