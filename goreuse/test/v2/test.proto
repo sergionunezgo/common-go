@@ -1,5 +1,5 @@
 syntax = "proto3";
-package goreuse.test;
+package goreuse.test.v2;
 
 option go_package = "github.com/sergionunezgo/go-reuse/v2/pkg/proto/test";
 
